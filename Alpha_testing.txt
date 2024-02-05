@@ -1,0 +1,7 @@
+1 Problem of capture image(Instant) --done
+2 Back and register button --done
+3 Put Qr scan on Different thread and Destroy the window while clicking on Close Button  --done
+4 Time in only in attendance
+5 Dashboard Today's Attendance(live numbers of gymers currently present in gym)
+6 Cloud(Trainer's, Enquiry, Employee)
+7 Active/Deactive members list
