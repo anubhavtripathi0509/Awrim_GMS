@@ -1689,7 +1689,7 @@ class ViewFrame(ctk.CTkFrame):
         view_button=ctk.CTkButton(view_button_frame, text="View", command=self.edit_record)
         view_button.pack(padx=10, pady=10)
         # Create an "Invoice" button in the second column
-        invoice_button=ctk.CTkButton(view_button_frame, text="Download Invoice", command=self.download_invoice)
+        invoice_button=ctk.CTkButton(view_button_frame, text="Generate Invoice", command=self.download_invoice)
         invoice_button.pack(padx=10, pady=10)
 
         # Create a "Back" button to return to the previous frame
@@ -1759,7 +1759,7 @@ class ViewFrame(ctk.CTkFrame):
                 end_date=record_data[8]
                 personal_trainer=record_data[10]
                 payment_mode=member_data[-2]
-                download_invoice=DownloadInvoice(self, id_value,first_name, last_name, contact_no, payment, balance, subscription_id, subscription_plan, start_date, end_date, personal_trainer, payment_mode)
+                download_invoice=GenerateInvoice(self, id_value,first_name, last_name, contact_no, payment, balance, subscription_id, subscription_plan, start_date, end_date, personal_trainer, payment_mode)
 
 
     def back_button_event(self):
@@ -1777,7 +1777,7 @@ class ViewFrame(ctk.CTkFrame):
                 first_name=record_data[1]
                 edit_form=EditForm(self, first_name, id_value, self.table)
 
-def DownloadInvoice(self, id_value, first_name, last_name, contact_no, payment, balance, subscription_id, subscription_plan, start_date, end_date, personal_trainer, payment_mode):
+def GenerateInvoice(self, id_value, first_name, last_name, contact_no, payment, balance, subscription_id, subscription_plan, start_date, end_date, personal_trainer, payment_mode):
     # pdf = reportlab.pdfgen.canvas.Canvas(f"{first_name} {last_name} invoice.pdf")
     # pdf.setFont("Helvetica-Bold", 20)
     pdf_path = os.path.join(os.path.expanduser("~"), "Downloads", f"{first_name}_{last_name}_invoice.pdf")
@@ -1890,11 +1890,9 @@ def DownloadInvoice(self, id_value, first_name, last_name, contact_no, payment, 
 
     # Download the PDF
     pdf.save()
-
-
-
     # show a success message
-    messagebox.showinfo("Download Successful", "Invoice downloaded successfully.")    
+    messagebox.showinfo("Download Successful", "Invoice downloaded successfully.")
+    os.startfile(pdf_path) 
 
 
 class EditForm(ctk.CTkToplevel):
@@ -2215,7 +2213,7 @@ class EditForm(ctk.CTkToplevel):
                         delete_photo_records=cursor.fetchall()
                         print(delete_photo_records)
                         image_path = f"member_photo/awrim_{delete_photo_records[0][0]}_{delete_photo_records[0][1]}.png"
-                        image_path1 = f"member_qrcodes/awrim_{delete_photo_records[0][1]}.png"
+                        image_path1 = f"member_qrcodes/awrim_{delete_photo_records[0][0]}_{delete_photo_records[0][1]}.png"
                         if os.path.exists(image_path):
                             # Delete the file
                             os.remove(image_path)
