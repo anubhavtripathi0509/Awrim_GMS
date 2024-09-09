@@ -96,7 +96,7 @@ def check_date():
     current_date=datetime.now()
 
     # Get all instances in the registration table
-    conn=sqlite3.connect('registration_form.db')
+    conn=sqlite3.connect('./Databases/registration_form.db')
     cursor=conn.cursor()
 
     cursor.execute("SELECT * FROM registration")
@@ -475,7 +475,7 @@ def create_home_frame(home):
 
     def get_members_count():
         # get the no. of members from the database
-        conn=sqlite3.connect('registration_form.db')
+        conn=sqlite3.connect('./Databases/registration_form.db')
         cursor=conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM registration")
         members_count=cursor.fetchone()[0]
@@ -499,7 +499,7 @@ def create_home_frame(home):
 
     def get_visitors_count():
         # get the no. of members from the database
-        conn=sqlite3.connect('visitors_log.db')
+        conn=sqlite3.connect('./Databases/visitors_log.db')
         cursor=conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM visitors")
         visitors_count=cursor.fetchone()[0]
@@ -523,7 +523,7 @@ def create_home_frame(home):
 
     def get_employee_count():
         # get the no. of members from the database
-        conn=sqlite3.connect('register_employee.db')
+        conn=sqlite3.connect('./Databases/register_employee.db')
         cursor=conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM employees")
         employee_count=cursor.fetchone()[0]
@@ -547,7 +547,7 @@ def create_home_frame(home):
 
     def get_trainer_count():
         # get the no. of members from the database
-        conn=sqlite3.connect('register_trainer.db')
+        conn=sqlite3.connect('./Databases/register_trainer.db')
         cursor=conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM trainer")
         trainer_count=cursor.fetchone()[0]
@@ -571,7 +571,7 @@ def create_home_frame(home):
 
     def get_gym_equipment_count():
         # get the no. of members from the database
-        conn=sqlite3.connect('register_equipment.db')
+        conn=sqlite3.connect('./Databases/register_equipment.db')
         cursor=conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM equipment")
         gym_equipment_count=cursor.fetchone()[0]
@@ -596,7 +596,7 @@ def create_home_frame(home):
 
     # def get_todays_attendance_count():
     #     # get the no. of members from the database
-    #     conn=sqlite3.connect('attendance_records.db')
+    #     conn=sqlite3.connect('./Databases/attendance_records.db')
     #     cursor=conn.cursor()
     #     cursor.execute("SELECT COUNT(*) FROM attendance")
     #     members_count=cursor.fetchone()[0]
@@ -660,7 +660,7 @@ def create_home_frame(home):
 
     def get_total_membership_income():
         # get the no. of members from the database
-        conn=sqlite3.connect('registration_form.db')
+        conn=sqlite3.connect('./Databases/registration_form.db')
         cursor=conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM registration")
         members_count=cursor.fetchone()[0]
@@ -690,7 +690,7 @@ def create_home_frame(home):
 
     def get_total_visitor_income():
         # get the no. of members from the database
-        conn=sqlite3.connect('visitors_log.db')
+        conn=sqlite3.connect('./Databases/visitors_log.db')
         cursor=conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM visitors")
         visitors_count=cursor.fetchone()[0]
@@ -739,7 +739,7 @@ def create_home_frame(home):
 
     def get_time_in_and_out():
         # Update count of time-in and time-out for membership
-        conn=sqlite3.connect('attendance_records.db')
+        conn=sqlite3.connect('./Databases/attendance_records.db')
         cursor=conn.cursor()
         cursor.execute("SELECT COUNT(time_in), COUNT(time_out) FROM attendance_records")
         count_time_in, count_time_out=cursor.fetchone()
@@ -759,7 +759,7 @@ def update_income_report(root, ax, canvas):
     current_month=datetime.now().strftime('%Y-%m')
 
     # Connect to the visitors database
-    conn_visitors=sqlite3.connect('visitors_log.db')
+    conn_visitors=sqlite3.connect('./Databases/visitors_log.db')
     cursor_visitors=conn_visitors.cursor()
 
     # Retrieve monthly visitor count
@@ -769,7 +769,7 @@ def update_income_report(root, ax, canvas):
     conn_visitors.close()
 
     # Connect to the members database
-    conn_members=sqlite3.connect('registration_form.db')
+    conn_members=sqlite3.connect('./Databases/registration_form.db')
     cursor_members=conn_members.cursor()
 
     # Retrieve monthly member count
@@ -882,7 +882,7 @@ def create_gym_membership_frame(frame_2):
 
 def fetch_trainers_from_db():
             # Connect to the SQLite database (replace 'your_database.db' with your actual database name)
-            conn = sqlite3.connect('register_trainer.db')
+            conn = sqlite3.connect('./Databases/register_trainer.db')
             cursor = conn.cursor()
 
             # Execute a query to fetch trainer names (replace 'your_table' with your actual table name)
@@ -903,7 +903,7 @@ class RegistrationFrame(ctk.CTkFrame):
         super().__init__(master, **kwargs)
 
         # Create a connection to the database
-        self.conn=sqlite3.connect('registration_form.db')
+        self.conn=sqlite3.connect('./Databases/registration_form.db')
         self.cursor=self.conn.cursor()
 
         # STEP 1: PERSONAL INFORMATION
@@ -1152,7 +1152,7 @@ class RegistrationFrame(ctk.CTkFrame):
         self.payment_mode_entry=payment_mode_entry
         self.personal_trainer_entry=personal_trainer_entry
 
-        with sqlite3.connect('registration_form.db') as conn:
+        with sqlite3.connect('./Databases/registration_form.db') as conn:
             cursor=conn.cursor()
 
         # Create a table to store registration information
@@ -1407,7 +1407,7 @@ class RegistrationFrame(ctk.CTkFrame):
                 (current_date.month, current_date.day) < (birth_date_obj.month, birth_date_obj.day))
 
         # Create a connection to the database
-        conn=sqlite3.connect('registration_form.db')
+        conn=sqlite3.connect('./Databases/registration_form.db')
         cursor=conn.cursor()
 
         # Calculate the expiration date
@@ -1466,7 +1466,7 @@ class RegistrationFrame(ctk.CTkFrame):
         conn.close()
 
 
-        conn=sqlite3.connect('registration_form.db')
+        conn=sqlite3.connect('./Databases/registration_form.db')
         cursor=conn.cursor()
         # Execute SQL query with a WHERE clause for searching
         cursor.execute(
@@ -1557,7 +1557,7 @@ class ViewFrame(ctk.CTkFrame):
         self.search_entry.bind("<Return>",self.on_enter)
 
         # Create a connection to the database
-        conn=sqlite3.connect('registration_form.db')
+        conn=sqlite3.connect('./Databases/registration_form.db')
         cursor=conn.cursor()
 
         # Get only the specific columns from the database
@@ -1702,7 +1702,7 @@ class ViewFrame(ctk.CTkFrame):
         entry_text = self.search_entry.get()
         # print(f"Search: {entry_text}")
 
-        conn=sqlite3.connect('registration_form.db')
+        conn=sqlite3.connect('./Databases/registration_form.db')
         cursor=conn.cursor()
         # Get only the specific columns from the database
         # Clear existing items in the tree
@@ -1743,7 +1743,7 @@ class ViewFrame(ctk.CTkFrame):
                 # print(record_data)
                 id_value=record_data[0]
                 # Create a connection to the database
-                conn=sqlite3.connect('registration_form.db')
+                conn=sqlite3.connect('./Databases/registration_form.db')
                 cursor=conn.cursor()
                 cursor.execute("SELECT * FROM registration WHERE id=?", (id_value,))
                 member_data=cursor.fetchone()
@@ -1914,7 +1914,7 @@ class EditForm(ctk.CTkToplevel):
         self.geometry(f"+{x}+{y}")
 
         # Create a connection to the database
-        self.conn=sqlite3.connect('registration_form.db')
+        self.conn=sqlite3.connect('./Databases/registration_form.db')
         self.cursor=self.conn.cursor()
 
         # Fetch data for the specified member using the provided 'id_value'
@@ -2166,7 +2166,7 @@ class EditForm(ctk.CTkToplevel):
             # Note: Do not close the cursor here to avoid the "Cannot operate on a closed database" error
 
             # Fetch the updated data from the database
-            conn=sqlite3.connect('registration_form.db')
+            conn=sqlite3.connect('./Databases/registration_form.db')
             cursor=conn.cursor()
 
             try:
@@ -2205,7 +2205,7 @@ class EditForm(ctk.CTkToplevel):
                 # Delete the selected record from the database based on the 'ID' column
                 if record_data:
                     id_value=record_data[0]  # Assuming 'ID' is the first column in the 'values' list
-                    conn=sqlite3.connect('registration_form.db')
+                    conn=sqlite3.connect('./Databases/registration_form.db')
                     cursor=conn.cursor()
                     try:
                         cursor.execute("SELECT first_name, last_name FROM registration WHERE id=?", (id_value,))
@@ -2247,7 +2247,7 @@ class EditForm(ctk.CTkToplevel):
                     self.table.delete(selected_item)
 
                     # Fetch the updated data from the database
-                    conn=sqlite3.connect('registration_form.db')
+                    conn=sqlite3.connect('./Databases/registration_form.db')
                     cursor=conn.cursor()
                     cursor.execute(
                         "SELECT id, first_name, last_name, medical_condition, contact_no, payment_balance, subscription_id, start_date, end_date, status, personal_trainer FROM registration")
@@ -2306,7 +2306,7 @@ class RenewSubscriptionFrame(ctk.CTkToplevel):
         self.entry_fields=[]
 
         # Create a connection to the database
-        self.conn=sqlite3.connect('registration_form.db')
+        self.conn=sqlite3.connect('./Databases/registration_form.db')
         self.cursor=self.conn.cursor()
 
         # Fetch data for the specified member using the provided 'id_value'
@@ -2350,7 +2350,7 @@ class RenewSubscriptionFrame(ctk.CTkToplevel):
             return
 
         # Update the data in the database
-        conn=sqlite3.connect('registration_form.db')
+        conn=sqlite3.connect('./Databases/registration_form.db')
         cursor=conn.cursor()
 
         try:
@@ -2642,8 +2642,8 @@ class ScanFrame(ctk.CTkFrame):
             first_name, middle_name, last_name, contact_no, subscription_id=member_data.split(',')
             current_datetime=datetime.now().strftime("%Y-%m-%d %I:%M:%S %p")
 
-            # Connect to the registration_form.db database
-            with sqlite3.connect('registration_form.db') as conn_registration:
+            # Connect to the ./Databases/registration_form.db database
+            with sqlite3.connect('./Databases/registration_form.db') as conn_registration:
                 cursor_registration=conn_registration.cursor()
 
                 # Check subscription status before recording attendance
@@ -2663,8 +2663,8 @@ class ScanFrame(ctk.CTkFrame):
                     messagebox.showerror("Error", f"Subscription ID {subscription_id} has expired.")
                     return
 
-            # Connect to the attendance_records.db database
-            with sqlite3.connect('attendance_records.db') as conn_attendance:
+            # Connect to the ./Databases/attendance_records.db database
+            with sqlite3.connect('./Databases/attendance_records.db') as conn_attendance:
                 cursor_attendance=conn_attendance.cursor()
 
                 if attendance_type == "Time In":
@@ -2826,7 +2826,7 @@ class RecordsFrame(ctk.CTkFrame):
         self.load_attendance_records()
 
         # Create attendance record sqlite database if it doesn't exist
-        conn=sqlite3.connect('attendance_records.db')
+        conn=sqlite3.connect('./Databases/attendance_records.db')
         cursor=conn.cursor()
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS attendance_records (
@@ -2845,7 +2845,7 @@ class RecordsFrame(ctk.CTkFrame):
 
     def load_attendance_records(self):
         # Fetch attendance records from the database and populate the Treeview
-        conn=sqlite3.connect('attendance_records.db')
+        conn=sqlite3.connect('./Databases/attendance_records.db')
         cursor=conn.cursor()
 
         try:
@@ -3055,7 +3055,7 @@ class RegistrationEquipment(ctk.CTkFrame):
         self.equipment_training_required_entry=equipment_training_required_entry
 
         # Create a connection to the database (or create it if it doesn't exist)
-        conn=sqlite3.connect('register_equipment.db')
+        conn=sqlite3.connect('./Databases/register_equipment.db')
 
         # Create a cursor object to interact with the database
         cursor=conn.cursor()
@@ -3095,7 +3095,7 @@ class RegistrationEquipment(ctk.CTkFrame):
         equipment_training_required=self.equipment_training_required_entry.get()
 
         # Create a connection to the database
-        conn=sqlite3.connect('register_equipment.db')
+        conn=sqlite3.connect('./Databases/register_equipment.db')
         cursor=conn.cursor()
 
         # Insert the data into the database
@@ -3142,7 +3142,7 @@ class EquipmentRecords(ctk.CTkFrame):
         label.pack(pady=20, padx=10)
 
         # Create a connection to the database
-        conn=sqlite3.connect('register_equipment.db')
+        conn=sqlite3.connect('./Databases/register_equipment.db')
         cursor=conn.cursor()
 
         # Get only the specific columns from the database
@@ -3272,7 +3272,7 @@ class EquipmentRecords(ctk.CTkFrame):
                 # Delete the selected record from the database based on the 'First Name' column
                 if record_data:
                     id=record_data[0]  # Assuming 'First Name' is the first column in the 'values' list
-                    conn=sqlite3.connect('register_equipment.db')
+                    conn=sqlite3.connect('./Databases/register_equipment.db')
                     cursor=conn.cursor()
                     try:
                         cursor.execute("DELETE FROM equipment WHERE id=?", (id,))
@@ -3308,7 +3308,7 @@ class EditRecord(ctk.CTkToplevel):
         self.geometry(f"+{x}+{y}")
 
         # Create a connection to the database
-        self.conn=sqlite3.connect('register_equipment.db')
+        self.conn=sqlite3.connect('./Databases/register_equipment.db')
         self.cursor=self.conn.cursor()
 
         # Fetch data for the specified member using the provided 'id_value'
@@ -3381,7 +3381,7 @@ class EditRecord(ctk.CTkToplevel):
             self.table.delete(item)
 
         # Fetch and add the updated records to the table
-        conn=sqlite3.connect('register_equipment.db')
+        conn=sqlite3.connect('./Databases/register_equipment.db')
         cursor=conn.cursor()
         cursor.execute(
             "SELECT id, equipment_name, equipment_quantity, equipment_type, equipment_status, equipment_training_required FROM equipment")
@@ -3434,7 +3434,7 @@ class EditRecord(ctk.CTkToplevel):
                 # Delete the selected record from the database based on the 'First Name' column
                 if record_data:
                     id_value=record_data[0]  # Assuming 'ID' is the first column in the 'values' list
-                    conn=sqlite3.connect('register_equipment.db')
+                    conn=sqlite3.connect('./Databases/register_equipment.db')
                     cursor=conn.cursor()
                     try:
                         cursor.execute("DELETE FROM equipment WHERE id=?", (id_value,))
@@ -3663,7 +3663,7 @@ class TrainerFrame(ctk.CTkFrame):
         self.emergency_contact_entry=emergency_contact_entry
 
         # Create a connection to the database (or create it if it doesn't exist)
-        conn=sqlite3.connect('register_trainer.db')
+        conn=sqlite3.connect('./Databases/register_trainer.db')
 
         # Create a cursor object to interact with the database
         cursor=conn.cursor()
@@ -3797,7 +3797,7 @@ class TrainerFrame(ctk.CTkFrame):
             return
 
         # Create a connection to the database
-        conn=sqlite3.connect('register_trainer.db')
+        conn=sqlite3.connect('./Databases/register_trainer.db')
         cursor=conn.cursor()
 
         status='Active'
@@ -3874,7 +3874,7 @@ class ViewTrainerFrame(ctk.CTkFrame):
         label.pack(pady=20, padx=10)
 
         # Create a connection to the database
-        conn=sqlite3.connect('register_trainer.db')
+        conn=sqlite3.connect('./Databases/register_trainer.db')
         cursor=conn.cursor()
 
         # Get only the specific columns from the database
@@ -4017,7 +4017,7 @@ class EditTrainerForm(ctk.CTkToplevel):
         self.geometry(f"+{x}+{y}")
 
         # Create a connection to the database
-        self.conn=sqlite3.connect('register_trainer.db')
+        self.conn=sqlite3.connect('./Databases/register_trainer.db')
         self.cursor=self.conn.cursor()
 
         # Fetch data for the specified member using the provided 'id_value'
@@ -4129,7 +4129,7 @@ class EditTrainerForm(ctk.CTkToplevel):
 
     def refresh_table(self):
         # Fetch the updated records from the database
-        conn=sqlite3.connect('register_trainer.db')
+        conn=sqlite3.connect('./Databases/register_trainer.db')
         cursor=conn.cursor()
         cursor.execute("SELECT id, first_name, middle_name, last_name, age, sex, contact_no, status FROM trainer")
         updated_records=cursor.fetchall()
@@ -4156,7 +4156,7 @@ class EditTrainerForm(ctk.CTkToplevel):
 
         # Continue with the update logic
         try:
-            with sqlite3.connect('register_trainer.db') as conn:
+            with sqlite3.connect('./Databases/register_trainer.db') as conn:
                 cursor=conn.cursor()
                 cursor.execute('''
                     UPDATE trainer SET 
@@ -4188,7 +4188,7 @@ class EditTrainerForm(ctk.CTkToplevel):
                 # Delete the selected record from the database based on the 'First Name' column
                 if record_data:
                     id_value=record_data[0]  # Assuming 'ID' is the first column in the 'values' list
-                    conn=sqlite3.connect('register_trainer.db')
+                    conn=sqlite3.connect('./Databases/register_trainer.db')
                     cursor=conn.cursor()
                     try:
                         cursor.execute("SELECT first_name, last_name FROM trainer WHERE id=?", (id_value,))
@@ -4400,7 +4400,7 @@ class ScanQrFrame(ctk.CTkFrame):
             first_name, middle_name, last_name, contact_no=member_data.split(',')
             current_datetime=datetime.now().strftime("%Y-%m-%d %I:%M:%S %p")
 
-            with sqlite3.connect('register_trainer.db') as conn:
+            with sqlite3.connect('./Databases/register_trainer.db') as conn:
                 cursor=conn.cursor()
 
                 # Check the status before recording attendance
@@ -4411,7 +4411,7 @@ class ScanQrFrame(ctk.CTkFrame):
                 # Assuming 'status' is a tuple with a single element being the status
                 if status and status[0] in ['Active', 'On Leave']:
                     # Only proceed if the status is 'Active' or 'On Leave'
-                    with sqlite3.connect('trainer_attendance_records.db') as attendance_conn:
+                    with sqlite3.connect('trainer_./Databases/attendance_records.db') as attendance_conn:
                         attendance_cursor=attendance_conn.cursor()
 
                         if attendance_type == "Time In":
@@ -4568,7 +4568,7 @@ class AttendanceFrame(ctk.CTkFrame):
         self.load_attendance_records()
 
         # Create attendance record sqlite database if it doesn't exist
-        conn=sqlite3.connect('trainer_attendance_records.db')
+        conn=sqlite3.connect('trainer_./Databases/attendance_records.db')
         cursor=conn.cursor()
         cursor.execute('''
                CREATE TABLE IF NOT EXISTS trainer_attendance (
@@ -4586,7 +4586,7 @@ class AttendanceFrame(ctk.CTkFrame):
 
     def load_attendance_records(self):
         # Fetch attendance records from the database and populate the Treeview
-        conn=sqlite3.connect('trainer_attendance_records.db')
+        conn=sqlite3.connect('trainer_./Databases/attendance_records.db')
         cursor=conn.cursor()
 
         try:
@@ -4710,7 +4710,7 @@ class LogbookFrame(ctk.CTkFrame):
         table_frame.grid(row=0, column=1, padx=10, pady=10)
 
         # Create a connection to the database
-        conn=sqlite3.connect('visitors_log.db')
+        conn=sqlite3.connect('./Databases/visitors_log.db')
         cursor=conn.cursor()
 
         # Get only the specific columns from the database
@@ -4798,7 +4798,7 @@ class LogbookFrame(ctk.CTkFrame):
 
         # Create a connection to the database (or create it if it doesn't exist)
         try:
-            with sqlite3.connect('visitors_log.db') as conn:
+            with sqlite3.connect('./Databases/visitors_log.db') as conn:
                 # Create a cursor object to interact with the database
                 cursor=conn.cursor()
 
@@ -4823,7 +4823,7 @@ class LogbookFrame(ctk.CTkFrame):
     def load_data_to_table(self):
         try:
             # Create a connection to the database
-            conn=sqlite3.connect('visitors_log.db')
+            conn=sqlite3.connect('./Databases/visitors_log.db')
             cursor=conn.cursor()
 
             # Fetch records from the database ordered by time in descending order
@@ -4910,7 +4910,7 @@ class LogbookFrame(ctk.CTkFrame):
             return
 
         # Create a connection to the database
-        conn=sqlite3.connect('visitors_log.db')
+        conn=sqlite3.connect('./Databases/visitors_log.db')
         cursor=conn.cursor()
 
         try:
@@ -4961,7 +4961,7 @@ class LogbookFrame(ctk.CTkFrame):
             first_name, middle_name, last_name, contact_no, time=values
 
             # Create a connection to the database
-            conn=sqlite3.connect('visitors_log.db')
+            conn=sqlite3.connect('./Databases/visitors_log.db')
             cursor=conn.cursor()
 
             # Delete the selected record from the database
@@ -5196,7 +5196,7 @@ class RegisterEmployeeFrame(ctk.CTkFrame):
         self.emergency_contact_entry=emergency_contact_entry
 
         # Create a connection to the database (or create it if it doesn't exist)
-        conn=sqlite3.connect('register_employee.db')
+        conn=sqlite3.connect('./Databases/register_employee.db')
 
         # Create a cursor object to interact with the database
         cursor=conn.cursor()
@@ -5313,7 +5313,7 @@ class RegisterEmployeeFrame(ctk.CTkFrame):
             return
 
         # Create a connection to the database
-        conn=sqlite3.connect('register_employee.db')
+        conn=sqlite3.connect('./Databases/register_employee.db')
         cursor=conn.cursor()
 
         status='Active'
@@ -5390,7 +5390,7 @@ class ViewEmployeeFrame(ctk.CTkFrame):
         label.pack(pady=20, padx=10)
 
         # Create a connection to the database
-        conn=sqlite3.connect('register_employee.db')
+        conn=sqlite3.connect('./Databases/register_employee.db')
         cursor=conn.cursor()
 
         # Get only the specific columns from the database
@@ -5532,7 +5532,7 @@ class EditEmployeeForm(ctk.CTkToplevel):
         self.geometry(f"+{x}+{y}")
 
         # Create a connection to the database
-        self.conn=sqlite3.connect('register_employee.db')
+        self.conn=sqlite3.connect('./Databases/register_employee.db')
         self.cursor=self.conn.cursor()
 
         # Fetch data for the specified member using the provided 'id_value'
@@ -5648,7 +5648,7 @@ class EditEmployeeForm(ctk.CTkToplevel):
             self.table.delete(item)
 
         # Fetch the updated records from the database
-        conn=sqlite3.connect('register_employee.db')
+        conn=sqlite3.connect('./Databases/register_employee.db')
         cursor=conn.cursor()
         cursor.execute("SELECT id, first_name, middle_name, last_name, age, sex, contact_no, status FROM employees")
         records=cursor.fetchall()
@@ -5675,7 +5675,7 @@ class EditEmployeeForm(ctk.CTkToplevel):
 
         # Continue with the update logic
         try:
-            with sqlite3.connect('register_employee.db') as conn:
+            with sqlite3.connect('./Databases/register_employee.db') as conn:
                 cursor=conn.cursor()
                 cursor.execute('''
                     UPDATE employees SET 
@@ -5707,7 +5707,7 @@ class EditEmployeeForm(ctk.CTkToplevel):
                 # Delete the selected record from the database based on the 'First Name' column
                 if record_data:
                     id_value=record_data[0]  # Assuming 'ID' is the first column in the 'values' list
-                    conn=sqlite3.connect('register_employee.db')
+                    conn=sqlite3.connect('./Databases/register_employee.db')
                     cursor=conn.cursor()
                     try:
                         cursor.execute("SELECT first_name, last_name FROM employees WHERE id=?", (id_value,))
@@ -5930,7 +5930,7 @@ class EmployeeScanQrFrame(ctk.CTkFrame):
             first_name, middle_name, last_name, contact_no=member_data.split(',')
             current_datetime=datetime.now().strftime("%Y-%m-%d %I:%M:%S %p")
 
-            with sqlite3.connect('register_employee.db') as conn:
+            with sqlite3.connect('./Databases/register_employee.db') as conn:
                 cursor=conn.cursor()
 
                 # Check the status before recording attendance
@@ -5941,7 +5941,7 @@ class EmployeeScanQrFrame(ctk.CTkFrame):
                 # Assuming 'status' is a tuple with a single element being the status
                 if status and status[0] in ['Active', 'On Leave']:
                     # Only proceed if the status is 'Active' or 'On Leave'
-                    with sqlite3.connect('employee_attendance_records.db') as attendance_conn:
+                    with sqlite3.connect('employee_./Databases/attendance_records.db') as attendance_conn:
                         attendance_cursor=attendance_conn.cursor()
 
                         if attendance_type == "Time In":
@@ -6097,7 +6097,7 @@ class RecordsAttendanceFrame(ctk.CTkFrame):
         self.load_attendance_records()
 
         # Create attendance record sqlite database if it doesn't exist
-        conn=sqlite3.connect('employee_attendance_records.db')
+        conn=sqlite3.connect('employee_./Databases/attendance_records.db')
         cursor=conn.cursor()
         cursor.execute('''
                    CREATE TABLE IF NOT EXISTS employee_attendance (
@@ -6115,7 +6115,7 @@ class RecordsAttendanceFrame(ctk.CTkFrame):
 
     def load_attendance_records(self):
         # Fetch attendance records from the database and populate the Treeview
-        conn=sqlite3.connect('employee_attendance_records.db')
+        conn=sqlite3.connect('employee_./Databases/attendance_records.db')
         cursor=conn.cursor()
 
         try:
@@ -6360,7 +6360,7 @@ class RegisterEnquiryFrame(ctk.CTkFrame):
         self.description_entry=description_entry
 
         # Create a connection to the database (or create it if it doesn't exist)
-        conn=sqlite3.connect('register_enquiry.db')
+        conn=sqlite3.connect('./Databases/register_enquiry.db')
 
         # Create a cursor object to interact with the database
         cursor=conn.cursor()
@@ -6477,7 +6477,7 @@ class RegisterEnquiryFrame(ctk.CTkFrame):
             return
 
         # Create a connection to the database
-        conn=sqlite3.connect('register_enquiry.db')
+        conn=sqlite3.connect('./Databases/register_enquiry.db')
         cursor=conn.cursor()
 
         status='Not Reverted'
@@ -6554,7 +6554,7 @@ class ViewEnquiryFrame(ctk.CTkFrame):
         label.pack(pady=20, padx=10)
 
         # Create a connection to the database
-        conn=sqlite3.connect('register_enquiry.db')
+        conn=sqlite3.connect('./Databases/register_enquiry.db')
         cursor=conn.cursor()
 
         # Get only the specific columns from the database
@@ -6699,7 +6699,7 @@ class EditEnquiryForm(ctk.CTkToplevel):
         self.geometry(f"+{x}+{y}")
 
         # Create a connection to the database
-        self.conn=sqlite3.connect('register_enquiry.db')
+        self.conn=sqlite3.connect('./Databases/register_enquiry.db')
         self.cursor=self.conn.cursor()
 
         # Fetch data for the specified member using the provided 'id_value'
@@ -6815,7 +6815,7 @@ class EditEnquiryForm(ctk.CTkToplevel):
             self.table.delete(item)
 
         # Fetch the updated records from the database
-        conn=sqlite3.connect('register_enquiry.db')
+        conn=sqlite3.connect('./Databases/register_enquiry.db')
         cursor=conn.cursor()
         cursor.execute("SELECT id, first_name, middle_name, last_name, age, sex, contact_no, status FROM enquiry")
         records=cursor.fetchall()
@@ -6842,7 +6842,7 @@ class EditEnquiryForm(ctk.CTkToplevel):
 
         # Continue with the update logic
         try:
-            with sqlite3.connect('register_enquiry.db') as conn:
+            with sqlite3.connect('./Databases/register_enquiry.db') as conn:
                 cursor=conn.cursor()
                 cursor.execute('''
                     UPDATE enquiry SET 
@@ -6874,7 +6874,7 @@ class EditEnquiryForm(ctk.CTkToplevel):
                 # Delete the selected record from the database based on the 'First Name' column
                 if record_data:
                     id_value=record_data[0]  # Assuming 'ID' is the first column in the 'values' list
-                    conn=sqlite3.connect('register_enquiry.db')
+                    conn=sqlite3.connect('./Databases/register_enquiry.db')
                     cursor=conn.cursor()
                     try:
                         cursor.execute("SELECT first_name, last_name FROM enquiry WHERE id=?", (id_value,))
@@ -7098,7 +7098,7 @@ class EnquiryScanQrFrame(ctk.CTkFrame):
             first_name, middle_name, last_name, contact_no=member_data.split(',')
             current_datetime=datetime.now().strftime("%Y-%m-%d %I:%M:%S %p")
 
-            with sqlite3.connect('register_enquiry.db') as conn:
+            with sqlite3.connect('./Databases/register_enquiry.db') as conn:
                 cursor=conn.cursor()
 
                 # Check the status before recording attendance
@@ -7109,7 +7109,7 @@ class EnquiryScanQrFrame(ctk.CTkFrame):
                 # Assuming 'status' is a tuple with a single element being the status
                 if status and status[0] in ['Reverted', 'Not Reverted']:
                     # Only proceed if the status is 'Active' or 'On Leave'
-                    with sqlite3.connect('enquiry_attendance_records.db') as attendance_conn:
+                    with sqlite3.connect('enquiry_./Databases/attendance_records.db') as attendance_conn:
                         attendance_cursor=attendance_conn.cursor()
 
                         if attendance_type == "Time In":
@@ -7265,7 +7265,7 @@ class EnquiryRecordsAttendanceFrame(ctk.CTkFrame):
         self.load_attendance_records()
 
         # Create attendance record sqlite database if it doesn't exist
-        conn=sqlite3.connect('enquiry_attendance_records.db')
+        conn=sqlite3.connect('enquiry_./Databases/attendance_records.db')
         cursor=conn.cursor()
         cursor.execute('''
                    CREATE TABLE IF NOT EXISTS enquiry_attendance (
@@ -7283,7 +7283,7 @@ class EnquiryRecordsAttendanceFrame(ctk.CTkFrame):
 
     def load_attendance_records(self):
         # Fetch attendance records from the database and populate the Treeview
-        conn=sqlite3.connect('enquiry_attendance_records.db')
+        conn=sqlite3.connect('enquiry_./Databases/attendance_records.db')
         cursor=conn.cursor()
 
         try:
@@ -7396,7 +7396,7 @@ def register(full_name, contact_no, username, password, contact_no_entry, full_n
         return
 
     # Connect to SQLite database
-    conn=sqlite3.connect('registered_users.db')
+    conn=sqlite3.connect('./Databases/registered_users.db')
     cursor=conn.cursor()
 
     try:
@@ -7493,7 +7493,7 @@ def create_sms_section_frame(frame_8):
 
 def send_total_sms(subject, body):
     # print(subject,body)
-    conn=sqlite3.connect('registration_form.db')
+    conn=sqlite3.connect('./Databases/registration_form.db')
     cursor=conn.cursor()
     cursor.execute('SELECT email FROM registration')
     registered_user=cursor.fetchone()
@@ -7601,7 +7601,7 @@ def forgot_password():
         if user_phone_number is None:
             break
         elif user_phone_number.startswith('0') and len(user_phone_number) == 11 and user_phone_number[1:].isdigit():
-            conn=sqlite3.connect('registered_users.db')
+            conn=sqlite3.connect('./Databases/registered_users.db')
             cursor=conn.cursor()
             cursor.execute('SELECT * FROM accounts WHERE contact_no = ?', (user_phone_number,))
             registered_user=cursor.fetchone()
@@ -7620,7 +7620,7 @@ def forgot_password():
 
                     if new_username and new_password:
                         if is_valid_password(new_password):
-                            conn=sqlite3.connect('registered_users.db')
+                            conn=sqlite3.connect('./Databases/registered_users.db')
                             cursor=conn.cursor()
                             cursor.execute('UPDATE accounts SET username = ?, password = ? WHERE contact_no = ?',
                                            (new_username, new_password, user_phone_number))
@@ -7657,7 +7657,7 @@ def create_login_window():
             return
 
         # Connect to SQLite database
-        conn=sqlite3.connect('registered_users.db')
+        conn=sqlite3.connect('./Databases/registered_users.db')
         cursor=conn.cursor()
 
         # Check if the provided username and password match an account in the database
@@ -7671,7 +7671,7 @@ def create_login_window():
             new_password="CONTACT_TO_AWRIM"
             def update_username_password(username, new_username, new_password):
                 # Connect to SQLite database
-                conn = sqlite3.connect('registered_users.db')
+                conn = sqlite3.connect('./Databases/registered_users.db')
                 cursor = conn.cursor()
                     # Update username and password
                 cursor.execute('''

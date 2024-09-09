@@ -23,7 +23,7 @@ def create_home_frame(home):
     members_counter_label.pack(pady=10, padx=10, anchor="center")
 
     # get the no. of members from the database
-    conn=sqlite3.connect('registration_form.db')
+    conn=sqlite3.connect('./Databases/registration_form.db')
     cursor=conn.cursor()
     cursor.execute("SELECT COUNT(*) FROM registration")
     members_count=cursor.fetchone()[0]
@@ -43,7 +43,7 @@ def create_home_frame(home):
     visitor_counter_label.pack(pady=10, padx=10, anchor="center")
 
     # get the no. of members from the database
-    conn=sqlite3.connect('visitors_log.db')
+    conn=sqlite3.connect('./Databases/visitors_log.db')
     cursor=conn.cursor()
     cursor.execute("SELECT COUNT(*) FROM visitors")
     visitors_count=cursor.fetchone()[0]
@@ -63,7 +63,7 @@ def create_home_frame(home):
     employee_counter_label.pack(pady=10, padx=10, anchor="center")
 
     # get the no. of employees from the database
-    conn=sqlite3.connect('register_employee.db')
+    conn=sqlite3.connect('./Databases/register_employee.db')
     cursor=conn.cursor()
     cursor.execute("SELECT COUNT(*) FROM employees")
     employee_count=cursor.fetchone()[0]
@@ -83,7 +83,7 @@ def create_home_frame(home):
     trainer_counter_label.pack(pady=10, padx=10, anchor="center")
 
     # get the no. of trainers from the database
-    conn=sqlite3.connect('register_trainer.db')
+    conn=sqlite3.connect('./Databases/register_trainer.db')
     cursor=conn.cursor()
     cursor.execute("SELECT COUNT(*) FROM trainer")
     trainer_count=cursor.fetchone()[0]
@@ -103,7 +103,7 @@ def create_home_frame(home):
     gym_equipment_counter_label.pack(pady=10, padx=10, anchor="center")
 
     # get the no. of gym equipment from the database
-    conn=sqlite3.connect('register_equipment.db')
+    conn=sqlite3.connect('./Databases/register_equipment.db')
     cursor=conn.cursor()
     cursor.execute("SELECT COUNT(*) FROM equipment")
     gym_equipment_count=cursor.fetchone()[0]
@@ -124,7 +124,7 @@ def create_home_frame(home):
 def update_counters(members_counter_label, visitor_counter_label, employee_counter_label, trainer_counter_label,
                     gym_equipment_counter_label):
     # Update members counter
-    conn=sqlite3.connect('registration_form.db')
+    conn=sqlite3.connect('./Databases/registration_form.db')
     cursor=conn.cursor()
     cursor.execute("SELECT COUNT(*) FROM registration")
     members_count=cursor.fetchone()[0]
@@ -132,7 +132,7 @@ def update_counters(members_counter_label, visitor_counter_label, employee_count
     conn.close()
 
     # Update visitors counter
-    conn=sqlite3.connect('visitors_log.db')
+    conn=sqlite3.connect('./Databases/visitors_log.db')
     cursor=conn.cursor()
     cursor.execute("SELECT COUNT(*) FROM visitors")
     visitors_count=cursor.fetchone()[0]
@@ -140,7 +140,7 @@ def update_counters(members_counter_label, visitor_counter_label, employee_count
     conn.close()
 
     # Update employees counter
-    conn=sqlite3.connect('register_employee.db')
+    conn=sqlite3.connect('./Databases/register_employee.db')
     cursor=conn.cursor()
     cursor.execute("SELECT COUNT(*) FROM employees")
     employee_count=cursor.fetchone()[0]
@@ -148,7 +148,7 @@ def update_counters(members_counter_label, visitor_counter_label, employee_count
     conn.close()
 
     # Update trainers counter
-    conn=sqlite3.connect('register_trainer.db')
+    conn=sqlite3.connect('./Databases/register_trainer.db')
     cursor=conn.cursor()
     cursor.execute("SELECT COUNT(*) FROM trainer")
     trainer_count=cursor.fetchone()[0]
@@ -156,7 +156,7 @@ def update_counters(members_counter_label, visitor_counter_label, employee_count
     conn.close()
 
     # Update gym equipment counter
-    conn=sqlite3.connect('register_equipment.db')
+    conn=sqlite3.connect('./Databases/register_equipment.db')
     cursor=conn.cursor()
     cursor.execute("SELECT COUNT(*) FROM equipment")
     gym_equipment_count=cursor.fetchone()[0]
@@ -181,14 +181,14 @@ def delete_data_and_refresh(members_counter_label, visitor_counter_label, employ
                             trainer_counter_label, gym_equipment_counter_label, ax, canvas, count_label1, count_label2):
     try:
         # Delete data from the registration_form database (example)
-        conn_registration = sqlite3.connect('registration_form.db')
+        conn_registration = sqlite3.connect('./Databases/registration_form.db')
         cursor_registration = conn_registration.cursor()
         cursor_registration.execute("DELETE FROM registration WHERE some_condition")
         conn_registration.commit()
         conn_registration.close()
 
         # Delete data from the visitors_log database (example)
-        conn_visitors = sqlite3.connect('visitors_log.db')
+        conn_visitors = sqlite3.connect('./Databases/visitors_log.db')
         cursor_visitors = conn_visitors.cursor()
         cursor_visitors.execute("DELETE FROM visitors WHERE some_condition")
         conn_visitors.commit()

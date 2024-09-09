@@ -12,7 +12,7 @@ def update_record(self):
 
     # Continue with the update logic
     try:
-        with sqlite3.connect('register_trainer.db') as conn:
+        with sqlite3.connect('./Databases/register_trainer.db') as conn:
             cursor=conn.cursor()
             cursor.execute('''
                 UPDATE trainer SET 
@@ -42,7 +42,7 @@ def record_attendance(member_data, attendance_type):
         first_name, middle_name, last_name, contact_no=member_data.split(',')
         current_datetime=datetime.now().strftime("%Y-%m-%d %I:%M:%S %p")
 
-        with sqlite3.connect('register_trainer.db') as conn:
+        with sqlite3.connect('./Databases/register_trainer.db') as conn:
             cursor=conn.cursor()
 
             # Check the status before recording attendance
@@ -53,7 +53,7 @@ def record_attendance(member_data, attendance_type):
             # Assuming 'status' is a tuple with a single element being the status
             if status and status[0] in ['Active', 'On Leave']:
                 # Only proceed if the status is 'Active' or 'On Leave'
-                with sqlite3.connect('trainer_attendance_records.db') as attendance_conn:
+                with sqlite3.connect('trainer_./Databases/attendance_records.db') as attendance_conn:
                     attendance_cursor=attendance_conn.cursor()
 
                     if attendance_type == "Time In":

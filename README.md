@@ -1,5 +1,8 @@
 #   GYM MANAGEMENT SYSTEM WITH SMS SUPPORT
 
+![Home Screen](./assets/home.png)
+
+
 The Awrim Gym Management System with SMS support is a desktop application aim to enhance the fitness center's communication efficiency, 
 streamline operations, and improve gym member management. The system includes a QR code for  member and employee attendance. With the use of SMS, 
 this creative system may provide timely attendance notifications, automate duties, and communicate with gym members via SMS, reminders for gym membership 
