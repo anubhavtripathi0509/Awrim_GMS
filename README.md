@@ -1,7 +1,5 @@
 #   GYM MANAGEMENT SYSTEM WITH SMS SUPPORT
 
-pyinstaller gym.py --add-data "./test_images;test_images" --add-data "./employee_qrcodes;employee_qrcodes" --add-data "./frame_2_icons;frame_2_icons" --add-data "./frame_3_icons;frame_3_icons" --add-data "./frame_4_icons;frame_4_icons" --add-data "./frame_5_icons;frame_5_icons" --add-data "./frame_6_icons;frame_6_icons" --add-data "./frame_7_icons;frame_7_icons" --add-data "./member_qrcodes;member_qrcodes" --add-data "./trainer_qrcodes;trainer_qrcodes" --add-data "./enquiry_qrcodes;enquiry_qrcodes"  --add-data "./member_photo;member_photo"
-
 The Awrim Gym Management System with SMS support is a desktop application aim to enhance the fitness center's communication efficiency, 
 streamline operations, and improve gym member management. The system includes a QR code for  member and employee attendance. With the use of SMS, 
 this creative system may provide timely attendance notifications, automate duties, and communicate with gym members via SMS, reminders for gym membership 
@@ -46,10 +44,3 @@ plans,and analytics. Reduced operating costs, better communication, more satisfa
 
 # Contact:
 - FB: Anubhav Tripathi (Software Engineer)
-
-
-
-
-
-
-
